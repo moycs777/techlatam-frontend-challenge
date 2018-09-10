@@ -12,8 +12,17 @@ class Album extends Component {
         this.state = {
             entries:[],
             isLoading:false,
-            error:false
+            error:false,
+            currentPage: 1,
+            todosPerPage: 3
         };
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick(event) {
+        this.setState({
+            currentPage: Number(event.target.id)
+        });
     }
 
     componentDidMount() {
@@ -35,18 +44,20 @@ class Album extends Component {
             .catch(err=> this.setState({isLoading:false}));
     } 
     render() {
+        
+        //without pagination
         const { entries, isLoading, error } = this.state;
         var styles = {
             width: '18rem',
             
         };
-      if (error) {
-          return <p>{error.message}</p>;    
-      }
-      if (isLoading) {
-          return <p>Loading ...</p>;
-      }
-      return (
+        if (error) {
+            return <p>{error.message}</p>;    
+        }
+        if (isLoading) {
+            return <p>Loading ...</p>;
+        }
+        return (
          	<div class="container">
 				
 				<div className="row">
@@ -59,7 +70,7 @@ class Album extends Component {
 
                     {entries.map(album =>
 
-                        <div className="col-md-4">
+                        <div className="col-md-3">
 
                             <div className="card" style={styles} key={album.title.label}>
 
