@@ -7,12 +7,12 @@ import Navigation from './components/navigation';
 class App extends Component {
   render() {
     return (
-      <div className="App container">
+      <div className="App">
           <div>
             <Navigation />
-          </div>
-          <div>
-            <Album/>
+          </div> 
+          <div className="container">
+              <Album/>
           </div>
         
 

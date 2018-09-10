@@ -36,29 +36,55 @@ class Album extends Component {
     } 
     render() {
         const { entries, isLoading, error } = this.state;
-        if (error) {
-            return <p>{error.message}</p>;    
-        }
-        if (isLoading) {
-            return <p>Loading ...</p>;
-        }
-        return (
-            <div className="" >
-            {/* <div className="d-flex flex-wrap justify-content-center position-absolute w-100 h-100 align-items-center align-content-center" > */}
-                <h1>albums</h1>
-                <ul>
+        var styles = {
+            width: '18rem',
+            /* color: 'red',
+            backgroundColor: 'black',
+            fontWeight: 'bold' */
+        };
+      if (error) {
+          return <p>{error.message}</p>;    
+      }
+      if (isLoading) {
+          return <p>Loading ...</p>;
+      }
+      return (
+         	<div class="container">
+				
+				<div className="row">
+
+					<h3>albums</h3>
+
+				</div>
+
+            	<div className="row">
+
                     {entries.map(album =>
-                        <li key={album.title.label}>
-                            <a href={album.link.attributes.href} target="_blank">{album.title.label},</a>
-                            <p>Category: {album.category.attributes.label}</p>
-                            <p>asd: {album.image}</p>
-                            {/* <img src="https://is2-ssl.mzstatic.com/image/thumb/Music128/v4/c1/7b/a9/c17ba975-34aa-ee68-d3c9-e1db840fa06b/075679886613.jpg/55x55bb-85.png"></img> */}
-                            <img src={album['im:image'][0].label}></img>
-                        </li>
+                      <div className="col-md-4">
+
+                          <div className="card" style={styles} key={album.title.label}>
+
+                              <img className="card-img-top" src={album['im:image'][0].label} alt={album['im:image'][0].label} />
+
+                              <div className="card-body">
+
+                                  <h5 className="card-title">Artist: {album['im:artist'].label}.</h5>
+
+                                  <p className="card-text">Genre: {album.category.attributes.label}.</p>
+
+                                  <a href={album.link.attributes.href} className="btn btn-primary" target="_blank">{album.title.label}. </a>
+
+                              </div>
+
+                          </div>
+
+                      </div>
                     )}
-                </ul>
-            </div>
-        );
+
+				</div>
+
+			</div>
+      );
     }
 
     
