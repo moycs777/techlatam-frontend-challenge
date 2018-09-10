@@ -38,9 +38,7 @@ class Album extends Component {
         const { entries, isLoading, error } = this.state;
         var styles = {
             width: '18rem',
-            /* color: 'red',
-            backgroundColor: 'black',
-            fontWeight: 'bold' */
+            
         };
       if (error) {
           return <p>{error.message}</p>;    
