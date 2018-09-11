@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AlbumDetail from './albumdetail';
+
 // url form itunes api
 const api = 'https://itunes.apple.com/us/rss/topalbums/limit=100/json';
 
@@ -67,17 +67,38 @@ class Album extends Component {
 				</div>
 
             	<div className="row">
-                    <AlbumDetail
-                        key={1}
-                        styles={styles}
-                        entries={entries}
-                        propiedad={"una propiuedad q llega desde el componente padre"}
-                    />                    
+
+                    {entries.map((album, i) =>
+
+                        <div className="col-md-3">
+
+                            <div className="card" style={styles} key={album.title.label+i}>
+
+                                <img className="card-img-top" src={album['im:image'][0].label} alt={album['im:image'][0].label} />
+
+                                <div className="card-body">
+
+                                    <h5 className="card-title">Artist: {album['im:artist'].label}.</h5>
+
+                                    <p className="card-text">Genre: {album.category.attributes.label}.</p>
+
+                                    <a href={album.link.attributes.href} 
+                                        className="btn btn-primary col-xs-1" 
+                                        target="_blank">
+                                        {(album.title.label).substring(0, 25)}. 
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    )}
 
 				</div>
 
 			</div>
-        );
+      );
     }
 
     

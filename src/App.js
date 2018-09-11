@@ -12,7 +12,9 @@ class App extends Component {
             <Navigation />
           </div> 
           <div className="container">
-              <Album/>
+              <Album
+                
+              />
           </div>
         
 
